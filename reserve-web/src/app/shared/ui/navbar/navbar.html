@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center fs-4" href="#">
+      <i class="bi bi-shop text-primary"></i>
+      <span class="ms-2">ReServ</span>
+    </a>
+    <button
+      (click)="isCollapsed.set(!isCollapsed())"
+      [attr.aria-expanded]="!isCollapsed()"
+      aria-controls="main-nav"
+      aria-label="Toggle navigation"
+      class="navbar-toggler"
+      type="button"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div [ngbCollapse]="isCollapsed()" class="navbar-collapse" id="main-nav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item">
+          <a class="btn btn-outline-info" href="#">
+            <i class="bi bi-box-arrow-in-right"></i>
+            <span class="ms-1">Login</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-primary" href="#">
+            <i class="bi bi-person-plus"></i>
+            <span class="ms-1">Signup</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
