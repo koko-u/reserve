@@ -1,17 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { NgbCollapse, NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle } from '@ng-bootstrap/ng-bootstrap';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { NgbCollapse } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  imports: [
-    NgbCollapse,
-    RouterLinkActive,
-    NgbDropdown,
-    NgbDropdownToggle,
-    NgbDropdownMenu,
-    NgbDropdownItem,
-    RouterLink,
-  ],
+  imports: [NgbCollapse],
   selector: 'rv-navbar',
   styleUrl: './navbar.css',
   templateUrl: './navbar.html',
