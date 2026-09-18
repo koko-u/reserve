@@ -6,11 +6,11 @@ import { ProductCard } from '../product-card/product-card';
 
 @Component({
   imports: [ProductSearch, ProductCard],
-  selector: 'rv-product-list',
-  styleUrl: './product-list.css',
-  templateUrl: './product-list.html',
+  selector: 'rv-products-page',
+  styleUrl: './products-page.css',
+  templateUrl: './products-page.html',
 })
-export class ProductList {
+export class ProductsPage {
   private readonly productsService = inject(ProductsService);
 
   protected readonly productQuery = signal<ProductQuery>(EmptyProductQuery);
