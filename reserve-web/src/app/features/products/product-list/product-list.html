@@ -1,0 +1,45 @@
+<section class="container py-4 py-lg-5" aria-labelledby="product-list-title">
+  <header class="mb-4">
+    <h1 id="product-list-title" class="h2 fw-bold mb-2">製品一覧</h1>
+    <p class="text-body-secondary mb-0">暮らしや仕事を快適にするアイテムをご紹介します。</p>
+    <p class="small text-body-secondary mt-2 mb-0">
+      掲載している製品・価格・在庫はデモ用のダミーデータです。
+    </p>
+  </header>
+
+  <rv-product-search (productQuerey)="productQuery.set($event)"/>
+
+  @if (productsResource.isLoading()) {
+    <div class="spinner-border text-info" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  } @else if (productsResource.error()) {
+    <div class="alert alert-danger" role="alert">
+      Products Data failed to Load <i class="bi bi-emoji-dizzy"></i>
+    </div>
+  } @else if (productsResource.value(); as productsAndCount) {
+
+    <p class="small text-body-secondary mb-3" role="status" aria-live="polite" aria-atomic="true">
+      全{{ productsAndCount.count }}件中 {{ productsAndCount.products.length }}件を表示
+    </p>
+
+    <ul class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 list-unstyled mb-0">
+      @for (product of productsAndCount.products; track product.id) {
+        <li class="col">
+          <rv-product-card [product]="product"/>
+        </li>
+      } @empty {
+        <li class="col w-100">
+          <div class="border rounded-3 text-center p-4 p-md-5">
+            <h2 class="h5">条件に一致する製品がありません</h2>
+            <p class="text-body-secondary">キーワードや在庫の条件を変更してお試しください。</p>
+            <button type="button" class="btn btn-outline-primary" (click)="resetFilters()">
+              検索条件をリセット
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  }
+
+</section>

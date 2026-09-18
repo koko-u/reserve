@@ -1,0 +1,39 @@
+<article class="card h-100 shadow-sm" [attr.aria-labelledby]="'product-' + product().id">
+  <div class="ratio ratio-4x3 bg-body-tertiary rounded-top overflow-hidden">
+    <img
+      [ngSrc]="product().image"
+      [alt]="product().name"
+      fill
+      sizes="(min-width: 1200px) 33vw, (min-width: 768px) 50vw, 100vw"
+      class="object-fit-cover"
+    />
+  </div>
+  <div class="card-body d-flex flex-column p-4">
+    <div class="d-flex justify-content-end mb-3">
+              <span
+                class="badge rounded-pill"
+                [class.text-bg-light]="product().stock > 0"
+                [class.text-bg-dark]="product().stock === 0"
+              >
+                {{ product().stock > 0 ? '在庫あり' : '在庫切れ' }}
+              </span>
+    </div>
+    <p class="small text-body-secondary mb-1">{{ product().category }}</p>
+    <h2 class="h5 fw-bold" [id]="'product-' + product().id">{{ product().name }}</h2>
+    <p class="text-body-secondary mb-4">{{ product().description }}</p>
+    <div class="mt-auto">
+      <p class="mb-3">
+                <span class="fs-4 fw-bold">{{
+                    product().price | currency: 'JPY' : 'symbol' : '1.0-0'
+                  }}</span>
+        <span class="small text-body-secondary ms-1">（税込）</span>
+      </p>
+      <dl class="row small border-top pt-3 mb-0">
+        <dt class="col-5 fw-normal text-body-secondary">製品コード</dt>
+        <dd class="col-7 text-end">{{ product().id }}</dd>
+        <dt class="col-5 fw-normal text-body-secondary">在庫数</dt>
+        <dd class="col-7 text-end mb-0">{{ product().stock }}点</dd>
+      </dl>
+    </div>
+  </div>
+</article>
