@@ -6,4 +6,11 @@ export interface Product {
   price: number;
   stock: number;
   image: string;
+  features: string[];
+  specifications: Specification[];
+}
+
+export interface Specification {
+  label: string;
+  value: string;
 }

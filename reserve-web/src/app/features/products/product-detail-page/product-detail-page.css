@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+.product-image {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.product-description,
+.feature-list {
+  line-height: 1.8;
+}
+
+.feature-list li + li {
+  margin-top: 0.75rem;
+}
+
+.specification-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: 1rem;
+  overflow-wrap: anywhere;
+}

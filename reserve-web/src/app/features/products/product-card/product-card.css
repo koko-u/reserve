@@ -1,0 +1,33 @@
+/*通常時の位置と影*/
+.card {
+  transform: translateY(0);
+  box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 8%);
+  transition: transform 180ms ease-out, box-shadow 180ms ease-out;
+}
+
+/*マウスなどホバーできる端末で適用*/
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 16%);
+  }
+}
+
+/*カード内のリンクにキーボードでフォーカスした時*/
+.card:has(a:focus-visible) {
+  transform: translateY(-4px);
+  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 16%);
+  outline: 2px solid var(--bs-primary);
+  outline-offset: 3px;
+}
+
+/*OSなどで「動きを減らす」が設定されている場合*/
+@media (prefers-reduced-motion: reduce) {
+  .card {
+    transition: none;
+  }
+
+  .card:hover, .card:has(a:focus-visible) {
+    transform: none;
+  }
+}

@@ -19,7 +19,11 @@
               </span>
     </div>
     <p class="small text-body-secondary mb-1">{{ product().category }}</p>
-    <h2 class="h5 fw-bold" [id]="'product-' + product().id">{{ product().name }}</h2>
+    <h2 class="h5 fw-bold" [id]="'product-' + product().id">
+      <a [routerLink]="['/products', product().id]" class="stretched-link text-decoration-none text-black">
+        {{ product().name }}
+      </a>
+    </h2>
     <p class="text-body-secondary mb-4">{{ product().description }}</p>
     <div class="mt-auto">
       <p class="mb-3">

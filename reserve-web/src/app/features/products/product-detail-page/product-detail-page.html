@@ -1,0 +1,97 @@
+<main class="container py-4 py-lg-5">
+  <nav aria-label="パンくずリスト" class="mb-4">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item"><a routerLink="/products">製品一覧</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ product().name }}</li>
+    </ol>
+  </nav>
+
+  <article aria-labelledby="product-title">
+    <div class="row g-4 g-lg-5 align-items-start">
+      <div class="col-lg-6">
+        <div class="product-image bg-body-tertiary rounded-3 overflow-hidden">
+          <img
+            [ngSrc]="product().image"
+            [alt]="product().name"
+            fill
+            priority
+            sizes="(min-width: 992px) 50vw, 100vw"
+            class="object-fit-contain"
+          />
+        </div>
+      </div>
+
+      <div class="col-lg-6">
+        <p class="small text-body-secondary mb-2">{{ product().category }}</p>
+        <h1 id="product-title" class="h2 fw-bold mb-3">{{ product().name }}</h1>
+        <p class="text-body-secondary mb-4 product-description">{{ product().description }}</p>
+
+        <p class="mb-4">
+          <span class="fs-2 fw-bold">{{
+              product().price | currency: 'JPY' : 'symbol' : '1.0-0'
+            }}</span>
+          <span class="small text-body-secondary ms-2">（税込）</span>
+        </p>
+
+        <div class="border rounded-3 p-3 p-md-4 mb-4">
+          <div class="d-flex flex-wrap align-items-center gap-2 mb-2">
+            <span
+              class="badge rounded-pill"
+              [class.text-bg-primary]="product().stock > 0"
+              [class.text-bg-dark]="product().stock === 0"
+            >
+              {{ product().stock > 0 ? '在庫あり' : '在庫切れ' }}
+            </span>
+            <span class="small">在庫数：{{ product().stock }}点</span>
+          </div>
+          <p class="small text-body-secondary mb-0">
+            {{
+              product().stock > 0 ? '現在の在庫状況です。' : '現在、この商品は在庫がありません。'
+            }}
+          </p>
+        </div>
+
+        <dl class="d-flex flex-wrap gap-2 small mb-0">
+          <dt class="fw-normal text-body-secondary">製品コード</dt>
+          <dd class="mb-0">{{ product().id }}</dd>
+        </dl>
+      </div>
+    </div>
+
+    <div class="row g-4 g-lg-5 mt-2 mt-lg-3">
+      @if (product().features.length > 0) {
+        <section class="col-lg-6" aria-labelledby="product-features-title">
+          <h2 id="product-features-title" class="h5 fw-bold mb-3">商品の特徴</h2>
+          <ul class="feature-list ps-4 mb-0">
+            @for (feature of product().features; track $index) {
+              <li>{{ feature }}</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (product().specifications.length > 0) {
+        <section class="col-lg-6" aria-labelledby="product-specifications-title">
+          <h2 id="product-specifications-title" class="h5 fw-bold mb-3">商品仕様</h2>
+          <dl class="mb-0">
+            @for (specification of product().specifications; track $index) {
+              <div class="specification-row border-top py-3">
+                <dt class="fw-normal text-body-secondary">{{ specification.label }}</dt>
+                <dd class="mb-0">{{ specification.value }}</dd>
+              </div>
+            }
+          </dl>
+        </section>
+      }
+    </div>
+  </article>
+
+  <footer class="border-top mt-5 pt-4">
+    <p class="small text-body-secondary mb-3">
+      掲載している製品・仕様・価格・在庫はデモ用のダミーデータです。
+    </p>
+    <a routerLink="/products" class="btn btn-outline-primary">
+      <i class="bi bi-arrow-left me-2" aria-hidden="true"></i>製品一覧に戻る
+    </a>
+  </footer>
+</main>
